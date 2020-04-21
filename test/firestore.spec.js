@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import * as fs from 'fs'
 import * as firebase from '@firebase/testing'
 
@@ -188,8 +189,9 @@ describe(testName, () => {
           const db = noAuthDB()
           await firebase.assertFails(
             db
-              .collection('chats')
+              .collection('rooms')
               .doc('tech-room')
+              .collection('chats')
               .get()
           )
         })
@@ -197,8 +199,9 @@ describe(testName, () => {
           const db = authDB({ uid: 'tech-user' })
           await firebase.assertSucceeds(
             db
-              .collection('chats')
+              .collection('rooms')
               .doc('tech-room')
+              .collection('chats')
               .get()
           )
         })
@@ -208,9 +211,10 @@ describe(testName, () => {
           const db = authDB({ uid: 'tech-user' })
           await firebase.assertSucceeds(
             db
-              .collection('chats')
+              .collection('rooms')
               .doc('tech-room')
-              .set({
+              .collection('chats')
+              .add({
                 userId: 'tech-user',
                 name: 'testUser',
                 iconImageUrl: 'https://exampla.com',

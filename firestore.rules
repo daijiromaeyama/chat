@@ -39,7 +39,7 @@ service cloud.firestore {
                   && isTimeStamp("createdAt");
     }
 
-    match /chats/{chatId} {
+    match /rooms/{roomId}/chats/{chatId} {
       allow read : if isAuth();
       allow create: if isAuth()
           && isUserAuth(request.resource.data.userId)
