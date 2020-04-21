@@ -188,9 +188,8 @@ describe(testName, () => {
           const db = noAuthDB()
           await firebase.assertFails(
             db
-              .collection('rooms')
-              .doc('tech-room')
               .collection('chats')
+              .doc('tech-room')
               .get()
           )
         })
@@ -198,9 +197,8 @@ describe(testName, () => {
           const db = authDB({ uid: 'tech-user' })
           await firebase.assertSucceeds(
             db
-              .collection('rooms')
-              .doc('tech-room')
               .collection('chats')
+              .doc('tech-room')
               .get()
           )
         })
@@ -210,10 +208,9 @@ describe(testName, () => {
           const db = authDB({ uid: 'tech-user' })
           await firebase.assertSucceeds(
             db
-              .collection('rooms')
-              .doc('tech-room')
               .collection('chats')
-              .add({
+              .doc('tech-room')
+              .set({
                 userId: 'tech-user',
                 name: 'testUser',
                 iconImageUrl: 'https://exampla.com',
